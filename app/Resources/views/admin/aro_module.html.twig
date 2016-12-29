@@ -1,0 +1,80 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/buttons.dataTables.min.css') }}">
+
+    {% endblock %}
+
+    {% block fos_user_content %}
+        <div id="arodata-primary">
+            <h3>Registros de analisis de riesgo operacional</h3>
+            {{ include('admin/tables/aro_table.html.twig') }}
+        </div>
+    {% endblock fos_user_content %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/datetime.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/dataTables.buttons.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jszip.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/buttons.html5.min.js') }}"></script>
+        <script>
+            $(document).ready( function () {
+                $('#aro_table').DataTable(
+                    {
+
+                        ajax: {
+                          "url":'{{ path('admin_data_aro') }}',
+                          "dataSrc": ""
+                        },
+                        "language": {
+                            "url": '{{ asset('files/spanish.json') }}'
+                        },
+                        scrollX:  true,
+                        "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
+                        dom: 'Bfrtlip',
+                        buttons: [
+                            {
+                                extend: 'excel',
+                                filename:'AROS'
+                            }
+                        ],
+                        "columns":[
+                            {
+                                "data": "user.email",
+                                /*"render": function ( data, type, row ) {
+                                    return data.nombres+" "+data.apellidos;
+                                }*/
+                            },
+                            {
+                                "data": "fecha",
+                                "render": $.fn.dataTable.render.moment( 'YYYY/MM/DD-H:m', 'DD/MM/YYYY' )
+                            },
+                            { "data": "modelo.nombre" },
+                            { "data": "aeronave.nombre" },
+                            { "data": "origen" },
+                            { "data": "destino" },
+                            { "data": "mission.titulo" },
+                            { "data": "zona.titulo" },
+                            { "data": "salud.titulo" },
+                            { "data": "situacion.titulo" },
+                            { "data": "descanso.titulo" },
+                            {
+                                "data":           null,
+                                "render": function ( data, type, row ) {
+                                    var total = data.mission.puntos + data.zona.puntos + data.salud.puntos + data.situacion.puntos + data.descanso.puntos;
+                                    return total;
+                                }
+                            },
+                        ]
+
+                    }
+                );
+            } );
+        </script>
+    {% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+    {% block title %}{{ parent() }} Generar Contraseña {% endblock %}
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/auth_process.css') }}">
+        <style>
+            .restablecer{
+                width: 700px;
+                position: absolute;
+                top: 20%;
+                left: 50%;
+                display: inline-block;
+                margin-left: -350px;
+
+            }
+        </style>
+    {% endblock %}
+
+{% block body %}
+    <div class="logo"></div>
+    <div class="login-block restablecer">
+        <h1>Generar nueva Contraseña</h1>
+        {% include "FOSUserBundle:Resetting:reset_content.html.twig" %}
+    </div>
+{% endblock %}

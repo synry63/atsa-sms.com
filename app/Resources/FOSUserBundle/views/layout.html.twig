@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/main_style.css') }}">
+{% endblock %}
+
+{% block body %}
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <nav id="menu-nav" class="navbar navbar-default nav-principal2">
+                <div class="navbar-collapse collapse">
+                {% if is_granted('ROLE_PILOTO') %}
+                    {{ knp_menu_render('AppBundle:Builder:pilotoMenu') }}
+                {% elseif is_granted('ROLE_MANAGER') %}
+                    {{ knp_menu_render('AppBundle:Builder:managerMenu') }}
+                {% endif %}
+                <ul class="nav navbar-nav navbar-right oe_user_menu_placeholder" style=""><li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                            <span class="oe_topbar_name">{{ app.user.nombres~" "~app.user.apellidos}}</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    Cerrar sesión
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>
+            </nav>
+        {% endif %}
+
+
+    {% if app.request.hasPreviousSession %}
+        {% for label, flash in app.session.flashbag.get('success') %}
+            <div class="alert alert-success hidden">
+                {{ flash }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="container">
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var r = $(".alert.alert-success.hidden").text();
+        if(r!="")
+            noty({layout: 'top',theme:'bootstrapTheme',type: 'success',text: r,timeout: 3000});
+    </script>
+{% endblock %}

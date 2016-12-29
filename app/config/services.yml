@@ -7,3 +7,9 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+  authentication_handler:
+      class:        MyUserBundle\Handler\AuthenticationHandler
+      arguments:    [@router, @security.context, @fos_user.user_manager, @service_container]
+
+  stringKey:
+    class:        AppBundle\Tool\KeyClass

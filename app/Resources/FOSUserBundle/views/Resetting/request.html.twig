@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+    {% block title %}{{ parent() }} Recuperar Contraseña {% endblock %}
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/auth_process.css') }}">
+        <style>
+            .restablecer{
+                width: 700px;
+                position: absolute;
+                top: 20%;
+                left: 50%;
+                display: inline-block;
+                margin-left: -350px;
+
+            }
+        </style>
+    {% endblock %}
+
+{% block body %}
+    <div class="logo"></div>
+    <div class="login-block restablecer">
+        <h1>Recuperación de Contraseña</h1>
+        {% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+        <a href="{{ path('fos_user_security_login') }}">Regresar</a>
+    </div>
+{% endblock %}

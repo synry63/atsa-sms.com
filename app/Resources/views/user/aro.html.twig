@@ -1,0 +1,197 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+    {% block fos_user_content %}
+    <div id="aro-primary">
+            <h3>Formulario de analisis de riesgo operacional</h3>
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="main-error">
+            {{ form_errors(form) }}
+        </div>
+
+        <div class="form-group required">
+            {{ form_label(form.modelo,'¿tipo de aeronave?',{ 'label_attr': {'class': 'control-label'}}) }}
+
+            {% if form.modelo.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.modelo) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.modelo,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group required">
+            {{ form_label(form.aeronave,'¿matricula?',{ 'label_attr': {'class': 'control-label'}}) }}
+
+            {% if form.aeronave.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.aeronave) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.aeronave,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group required">
+            {{ form_label(form.origen,'¿origen?',{ 'label_attr': {'class': 'control-label'}}) }}
+
+            {% if form.origen.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.origen) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.origen,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group required">
+            {{ form_label(form.destino,'¿destino?',{ 'label_attr': {'class': 'control-label'}}) }}
+
+            {% if form.destino.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.destino) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.destino,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group required for-radios">
+            {{ form_label(form.mission,'¿mission?',{ 'label_attr': {'class': 'control-label'}}) }}
+
+            {% if form.mission.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.mission) }}</div>
+                </div>
+            {% endif %}
+            <div class="choices-list">
+            {% for name, choices in form.mission.vars.choices %}
+                <div class="a-radio">
+                {{ form_errors(form.mission[name]) }}
+                {{ form_widget(form.mission[name]) }}
+                {{ form_label(form.mission[name]) }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="form-group required for-radios">
+            {% if form.zona.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.zona) }}</div>
+                </div>
+            {% endif %}
+            {{ form_label(form.zona,'¿zona?',{ 'label_attr': {'class': 'control-label'}}) }}
+
+            <div class="choices-list">
+            {% for name, choices in form.zona.vars.choices %}
+                <div class="a-radio">
+                    {{ form_errors(form.zona[name]) }}
+                    {{ form_widget(form.zona[name]) }}
+                    {{ form_label(form.zona[name]) }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="form-group required for-radios">
+            {{ form_label(form.salud,'¿como se siente (salud)?',{ 'label_attr': {'class': 'control-label'}}) }}
+
+            {% if form.salud.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.salud) }}</div>
+                </div>
+            {% endif %}
+            <div class="choices-list">
+            {% for name, choices in form.salud.vars.choices %}
+                <div class="a-radio">
+                    {{ form_errors(form.salud[name]) }}
+                    {{ form_widget(form.salud[name]) }}
+                    {{ form_label(form.salud[name]) }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="form-group required for-radios">
+            {{ form_label(form.situacion,'¿como va su dia (situacion)?',{ 'label_attr': {'class': 'control-label'}}) }}
+
+            {% if form.situacion.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.situacion) }}</div>
+                </div>
+            {% endif %}
+            <div class="choices-list">
+            {% for name, choices in form.situacion.vars.choices %}
+                <div class="a-radio">
+                    {{ form_errors(form.situacion[name]) }}
+                    {{ form_widget(form.situacion[name]) }}
+                    {{ form_label(form.situacion[name]) }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="form-group required for-radios">
+            {{ form_label(form.descanso,'¿descanso?',{ 'label_attr': {'class': 'control-label'}}) }}
+
+            {% if form.descanso.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.descanso) }}</div>
+                </div>
+            {% endif %}
+            <div class="choices-list">
+            {% for name, choices in form.descanso.vars.choices %}
+                <div class="a-radio">
+                    {{ form_errors(form.descanso[name]) }}
+                    {{ form_widget(form.descanso[name]) }}
+                    {{ form_label(form.descanso[name]) }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="form-group required for-radios">
+            {{ form_label(form.tiempoPlanificar,'¿tiempo para planificar?',{ 'label_attr': {'class': 'control-label'}}) }}
+
+            {% if form.tiempoPlanificar.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.tiempoPlanificar) }}</div>
+                </div>
+            {% endif %}
+            <div class="choices-list">
+            {% for name, choices in form.tiempoPlanificar.vars.choices %}
+                <div class="a-radio">
+                    {{ form_errors(form.tiempoPlanificar[name]) }}
+                    {{ form_widget(form.tiempoPlanificar[name]) }}
+                    {{ form_label(form.tiempoPlanificar[name]) }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="form-group end">
+            {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-primary btn-enviar'},'label': 'Enviar'}) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+    {% endblock fos_user_content %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        <script>
+            $( document ).ready(function() {
+                $("#aro_modelo").change(function(){
+                    var data = {
+                        modelo_id: $(this).val()
+                    };
+
+                    $.ajax({
+                        type: 'post',
+                        url: '{{ path("select_aeronaves") }}',
+                        data: data,
+                        success: function(data) {
+                            var $aeronave_selector = $('#aro_aeronave');
+
+                            $aeronave_selector.html('<option></option>');
+
+                            for (var i=0, total = data.length; i < total; i++) {
+                                $aeronave_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
+                            }
+                        }
+                    });
+                });
+                var r = $(".main-error ul li").text();
+                if(r!="")
+                    noty({layout: 'top',theme:'bootstrapTheme',type: 'error',text: r,timeout: 5000});
+
+            });
+        </script>
+    {% endblock %}
+

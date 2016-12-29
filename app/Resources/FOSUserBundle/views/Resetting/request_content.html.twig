@@ -1,0 +1,11 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form autocomplete="off" action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <div>
+        <label for="username">Ingrese correo electrónico</label>
+        <input type="email" id="username" name="username" required="required" />
+    </div>
+    <div>
+        <input class="button" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+    </div>
+</form>

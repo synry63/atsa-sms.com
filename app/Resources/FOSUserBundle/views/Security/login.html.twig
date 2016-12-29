@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+    {% block title %}{{ parent() }} Login {% endblock %}
+    {% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/auth_process.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% if app.request.hasPreviousSession %}
+        {% for label, flash in app.session.flashbag.get('success') %}
+            <div class="alert alert-success hidden">
+                {{ flash }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="logo"></div>
+    <div class="login-block">
+        <!--<h1>Login</h1>-->
+        {{ include('FOSUserBundle:Security:login_content.html.twig') }}
+        <a href="{{ path('fos_user_resetting_request') }}">¿Olvidaste la contraseña?</a>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var r = $(".alert.alert-success.hidden").text();
+        if(r!="")
+            noty({layout: 'top',theme:'bootstrapTheme',type: 'success',text: r,timeout: 3000});
+    </script>
+{% endblock %}

@@ -1,0 +1,94 @@
+body{
+    font-family: "Calibri Light",helvetica,sans-serif;
+    font-size: 16px;
+}
+label{
+    font-weight: normal;
+}
+#menu-nav .nav>li>a{
+    padding: 3px;
+    color: #777;
+    min-height: 30px;
+}
+#menu-nav .nav>li>a.dropdown-toggle{
+    color: white;
+}
+#menu-nav .nav>li.current>a{
+    color: #fff;
+    background-color: #080808;
+}
+#menu-nav{
+    min-height: 30px;
+    background: #222;
+    border: 0px;
+    border-radius: 0;
+}
+#menu-nav .dropdown-toggle i{
+    font-size: 20px;
+}
+#menu-nav .oe_topbar_name{
+    font-style: italic;
+}
+#menu-nav .navbar-brand, .navbar-nav > li > a{
+    text-shadow: none;
+}
+#aro-primary{
+    width: 85%;
+    margin: auto;
+}
+#aro-primary h3{
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+#arodata-primary h3{
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.form-group.required .control-label:after {
+    content:"*";
+    color:red;
+}
+.a-radio{
+    position: relative;
+    display: inline-block;
+    margin-left: .75rem;
+    padding-left: 1.25rem;
+    margin-bottom: 0;
+    min-width: 170px;
+}
+.a-radio input{
+    margin-top: .25rem;
+    margin-left: -1.25rem;
+    position: static;
+}
+.alert.alert-danger .ol, .alert.alert-danger ul,.alert.alert-danger li{
+    list-style: none;
+    display: inline;
+    padding: 0px;
+}
+.alert.alert-danger{
+    color: #a94442;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+.choices-list{
+    display: block;
+    padding-left: 5px;
+}
+.for-radios .control-label{
+    min-width: 200px;
+}
+.form-group.end{
+   text-align: right;
+}
+.main-error{
+    display: none;
+}
+.navbar-collapse.collapse{
+    text-align: center;
+}
+.logo-top{
+    height: 30px;
+}
